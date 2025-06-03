@@ -50,20 +50,11 @@
 		enable = true;
 	};
   };
+
+
+
   i18n = {
 	defaultLocale = "zh_CN.UTF-8";
-
-	inputMethod = {
-		enable = true;
-		type = "fcitx5";
-		fcitx5.addons = with pkgs; [
-            fcitx5-rime
-            fcitx5-chinese-addons
-            fcitx5-table-extra
-            fcitx5-pinyin-moegirl
-            fcitx5-pinyin-zhwiki
-		];
-	};
   };
   fonts = {
   	enableDefaultPackages = true;
@@ -76,6 +67,8 @@
 		wqy_microhei
 		wqy_zenhei
 		xorg.fontadobe75dpi
+		nerd-font-patcher
+        noto-fonts-color-emoji
 	];
 
   };
@@ -100,8 +93,6 @@
     fastfetch
     daed
     neovim
-
-
 
 
 
