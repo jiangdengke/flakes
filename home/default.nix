@@ -1,23 +1,27 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   imports = [
-    ./config
+    ./modules/apps
+    ./modules/desktop
+    ./modules/dev
+    ./modules/shell
   ];
 
-  home.username = "jdk";
-  home.homeDirectory = "/home/jdk";
+  # 基本配置
+  home = {
+    username = username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "23.11"; # 使用您实际的版本
 
-  xresources.properties = {
-    "Xcursor.size" = 14;
-    #"Xft.dpi" = 172;
+    # 基本包
+    packages = with pkgs; [
+      firefox
+      git
+      # 添加其他用户级包
+    ];
   };
-#     modules.fcitx5 = {
-#       enable = true;  # 这一行是必须的
-#     };
-  # programs.zsh.enable = true;
-  home.stateVersion = "23.11";
 
+  # 允许 Home Manager 管理自身
   programs.home-manager.enable = true;
-
 }
