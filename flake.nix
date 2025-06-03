@@ -11,11 +11,15 @@
     };
 
 
+        # 添加 niri-flake 作为输入
+#     niri.url = "github:sodiboo/niri-flake";
     daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 
   outputs =
+#     { nixpkgs, home-manager, daeuniverse, niri, ... }:
     { nixpkgs, home-manager, daeuniverse, ... }:
+
     {
       nixosConfigurations = {
        MyNixOS = nixpkgs.lib.nixosSystem {
@@ -29,6 +33,7 @@
               home-manager.users.jdk = ./home;
             }
             daeuniverse.nixosModules.daed
+
 
           ];
         };

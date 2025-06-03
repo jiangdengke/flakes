@@ -76,10 +76,15 @@
 
 
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  environment.systemPackages = with pkgs; [
 
+  services.desktopManager.plasma6.enable = false; # 关闭 Plasma
+
+  programs.niri.enable = true;
+
+#  基于 wlroot 的窗口管理器，并且有共享屏幕或录制屏幕的需求，记得启用的 wlr 对应的 portal。
+  xdg.portal.wlr.enable = true;
+
+  environment.systemPackages = with pkgs; [
     git
 
     firefox
@@ -94,7 +99,9 @@
     daed
     neovim
 
+    niri
 
+    jetbrains.idea-ultimate
 
     networkmanager
     pulseaudio
@@ -106,9 +113,9 @@
 
   ];
   environment.variables.EDITOR = "nvim";
-nix.settings.substituters = [
-	"https://mirrors.cernet.edu.cn/nix-channels/store"
-];
+    nix.settings.substituters = [
+      "https://mirrors.cernet.edu.cn/nix-channels/store"
+    ];
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
